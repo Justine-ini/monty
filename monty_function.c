@@ -8,7 +8,7 @@
  */
 void monty_function(char *operator, stack_t **node, unsigned int count_lines)
 {
-	size_t i;
+	size_t i = 0;
 
 	instruction_t valid_com[] = {
 		{"push", push},
@@ -28,6 +28,7 @@ void monty_function(char *operator, stack_t **node, unsigned int count_lines)
 		{"nop", m_nop},*/
 		{NULL, NULL}
 	};
+	/*
 	for (i = 0; valid_com[i].opcode; i++)
 	{
 		if (strcmp(valid_com[i].opcode, operator) == 0)
@@ -35,6 +36,15 @@ void monty_function(char *operator, stack_t **node, unsigned int count_lines)
 			valid_com[i].f(node, count_lines);
 			return;
 		}
+	}*/
+	while (valid_com[i].opcode)
+	{
+		if (strcmp(valid_com[i].opcode, operator) == 0)
+		{
+			valid_com[i].f(node, count_lines);
+			return;
+		}
+		i++;
 	}
 	fprintf(stderr, "L%u: unknown instruction %s\n", count_lines, operator);
 	free_stack();
