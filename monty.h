@@ -68,7 +68,7 @@ size_t print_rev(stack_t *h);
 void pint(stack_t **node, unsigned int counter);
 size_t print(stack_t *h);
 void free_stack(void);
-void m_swap(stack_t **head, unsigned int count_lines);
+void swap(stack_t **stack, unsigned int counter);
 void m_nop(stack_t **head, unsigned int count_lines);
 void pall(stack_t **stack, unsigned int counter);
 
