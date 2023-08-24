@@ -51,7 +51,7 @@ extern stack_t **global_free;
 int validate_number(char *arguments, unsigned int counter);
 int delete_node(stack_t **head, unsigned int index);
 void pop(stack_t **stack, unsigned int counter);
-void m_add(stack_t **head, unsigned int line_count);
+void add(stack_t **head, unsigned int line_count);
 void m_sub(stack_t **head, unsigned int line_count);
 void m_mul(stack_t **head, unsigned int line_count);
 void m_div(stack_t **head, unsigned int line_count);
