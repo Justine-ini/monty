@@ -1,24 +1,24 @@
 #include "monty.h"
+
 /**
- * add - adds the top and the second element of the stack
- * @head: pointer to head
- * @line_count: current line number
- * Return: void function
+ * add - adds the top two elements together
+ * @stack: pointer to the head node pointer of stack
+ * @nline: the line number
+ * Return: Nothing.
  */
-void add(stack_t **head, unsigned int line_count)
+void add(stack_t **stack, unsigned int nline)
 {
 	stack_t *temp;
-	int valor;
 
-	if (!head || !(*head) || !(*head)->next)
+	if (!(*stack) || !(*stack)->next)
 	{
-		fprintf(stderr, "L%u: can't add, stack too short\n", line_count);
+		fprintf(stderr, "L%d: can't add, stack too short\n", nline);
 		exit(EXIT_FAILURE);
 	}
-	temp = *head;
 
-	valor = temp->n + temp->next->n;
-	pop(head, line_count);
-	pop(head, line_count);
-	insert_node(head, valor);
+	temp = *stack;
+	(*stack)->next->n += (*stack)->n;
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+	free(temp);
 }
