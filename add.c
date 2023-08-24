@@ -13,7 +13,6 @@ void add(stack_t **head, unsigned int line_count)
 	if (!head || !(*head) || !(*head)->next)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_count);
-		free_stack();
 		exit(EXIT_FAILURE);
 	}
 	temp = *head;
