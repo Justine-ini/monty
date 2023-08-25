@@ -49,17 +49,18 @@ typedef struct instruction_s
 extern stack_t **global_free;
 
 int validate_number(char *arguments, unsigned int counter);
+int _isalpha(int c);
 int delete_node(stack_t **head, unsigned int index);
 void pop(stack_t **stack, unsigned int counter);
-void add(stack_t **head, unsigned int line_count);
-void m_sub(stack_t **head, unsigned int line_count);
-void m_mul(stack_t **head, unsigned int line_count);
-void m_div(stack_t **head, unsigned int line_count);
-void m_mod(stack_t **head, unsigned int line_count);
-void m_pchar(stack_t **head, unsigned int line_count);
-void m_pstr(stack_t **head, unsigned int line_count);
-void m_rotl(stack_t **head, unsigned int line_count);
-void m_rotr(stack_t **head, unsigned int line_count);
+void add(stack_t **head, unsigned int counter);
+void sub(stack_t **head, unsigned int counter);
+void mul(stack_t **head, unsigned int counter);
+void o_div(stack_t **head, unsigned int counter);
+void mod(stack_t **head, unsigned int counter);
+void pchar(stack_t **stack, unsigned int counter);
+void pstr(stack_t **head, unsigned int counter);
+void rotl(stack_t **head, unsigned int counter);
+void rotr(stack_t **head, unsigned int counter);
 int read_line(FILE *monty_file);
 void monty_function(char *operator, stack_t **node, unsigned int count_lines);
 stack_t *insert_node(stack_t **stack, const int n);
@@ -69,7 +70,7 @@ void pint(stack_t **node, unsigned int counter);
 size_t print(stack_t *h);
 void free_stack(void);
 void swap(stack_t **stack, unsigned int counter);
-void m_nop(stack_t **head, unsigned int count_lines);
+void nop(stack_t **head, unsigned int counter);
 void pall(stack_t **stack, unsigned int counter);
 
 #endif /* MONTY_H*/

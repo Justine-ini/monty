@@ -17,26 +17,17 @@ void monty_function(char *operator, stack_t **node, unsigned int count_lines)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
-/*		{"sub", m_sub},
-		{"div", m_div},
-		{"mod", m_mod},
-		{"mul", m_mul},
-		{"pchar", m_pchar},
-		{"pstr", m_pstr},
-		{"rotl", m_rotl},
-		{"rotr", m_rotr},
-		{"nop", m_nop},*/
+		{"sub", sub},
+		{"div", o_div},
+		{"mod", mod},
+		{"mul", mul},
+		{"pchar", pchar},
+		{"pstr", pstr},
+		{"rotl", rotl},
+		{"rotr", rotr},
+		{"nop", nop},
 		{NULL, NULL}
 	};
-	/*
-	for (i = 0; valid_com[i].opcode; i++)
-	{
-		if (strcmp(valid_com[i].opcode, operator) == 0)
-		{
-			valid_com[i].f(node, count_lines);
-			return;
-		}
-	}*/
 	while (valid_com[i].opcode)
 	{
 		if (strcmp(valid_com[i].opcode, operator) == 0)
