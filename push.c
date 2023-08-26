@@ -1,45 +1,54 @@
 #include "monty.h"
 /**
- * push - Pushes an element onto the stack
- * @stack: Double pointer to the head of the stack
- * @line_number: Line number in the file
- * @file: Pointer to the input file
+ * push - it pushes an element to the stack.
+ * @stack: pointer to head
+ * @counter: current line number
+ * Return: void function
  */
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int counter)
 {
-	char *line = NULL;
-	FILE *file = fopen("myfile.m", "r");
-	char *arg = strtok(line, " \t\n");
-	stack_t *new_node;
+	int digit;
+	char *arguments;
 
-	if (fgets(line, sizeof(line), file) == NULL)
+	arguments = strtok(NULL, DELIMETER);
+
+	if (!arguments)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		free(line);
-		fclose(file);
+		fprintf(stderr, "L%u: usage: push integer\n", counter);
 		exit(EXIT_FAILURE);
 	}
-	if (arg == NULL || (!isdigit(arg[0]) && arg[0] != '-'))
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		free(line);
-		fclose(file);
-		exit(EXIT_FAILURE);
-	}
-	new_node = malloc(sizeof(stack_t));
-	if (new_node == NULL)
+	digit = validate_number(arguments, counter);
+	if (!insert_node(stack, digit))
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		free(line);
-		fclose(file);
+		free_stack();
 		exit(EXIT_FAILURE);
 	}
-	new_node->n = atoi(arg);
-	new_node->prev = NULL;
-	new_node->next = *stack;
-	if (*stack != NULL)
-		(*stack)->prev = new_node;
+}
 
-	*stack = new_node;
-	free(line);
+/**
+ * insert_node - add node at begining of double linked list
+ * @stack: pointer to hed
+ * @n: integer
+ * Return: number of nodes
+ */
+stack_t *insert_node(stack_t **stack, const int n)
+{
+	stack_t *newNode, *temp;
+
+	newNode = malloc(sizeof(stack_t));
+	if (newNode == NULL)
+		return (NULL);
+	newNode->n = n;
+	newNode->prev = NULL;
+	temp = *stack;
+	if (*stack == NULL)
+		newNode->next = NULL;
+	else
+	{
+		newNode->next = temp;
+		temp->prev = newNode;
+	}
+	*stack = newNode;
+	return (newNode);
 }
